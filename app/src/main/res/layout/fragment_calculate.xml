@@ -17,10 +17,9 @@
 
     <LinearLayout
         android:id="@+id/tab1"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="12dp"
-        android:background="@mipmap/rectangle"
+        android:background="@mipmap/item_tab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +28,12 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/growth"
+                android:paddingTop="4dp"
+                android:paddingLeft="16dp"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
@@ -43,92 +43,36 @@
 
             <EditText
                 android:id="@+id/growth_type"
-                android:layout_marginLeft="10dp"
-                android:inputType="numberDecimal"
+                android:paddingTop="4dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/growth"
-                android:paddingBottom="10dp"
-                android:maxLength="5"
+                android:paddingLeft="340dp"
+                android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:hint="см"
-                android:layout_centerVertical="true"
+                android:inputType="numberDecimal"
+                android:maxLength="5"
+                android:paddingBottom="10dp"
                 android:textAlignment="textStart"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </RelativeLayout>
-
     </LinearLayout>
-
-
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView2"-->
-        <!--android:layout_width="350dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_marginStart="10dp"-->
-        <!--android:layout_marginTop="12dp"-->
-        <!--android:layout_marginEnd="10dp"-->
-        <!--android:src="@mipmap/rectangle"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/growth"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginStart="50dp"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:text="Введите ваш рост:"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toStartOf="@+id/imageView2"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
-    <!--<EditText-->
-        <!--android:id="@+id/growth_type"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="30dp"-->
-        <!--android:layout_marginEnd="4dp"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:gravity="left"-->
-        <!--android:hint="см"-->
-        <!--android:inputType="number"-->
-        <!--android:maxLength="3"-->
-        <!--android:textColorHint="@color/hintColor"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="1.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
 
     <LinearLayout
         android:id="@+id/tab2"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="10dp"
-        android:background="@mipmap/rectangle"
+        android:background="@mipmap/item_tab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab1"
         app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/weight"
@@ -136,96 +80,43 @@
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:textSize="20sp"
-                android:text="Введите ваш вес"/>
+                android:paddingLeft="16dp"
+                android:paddingTop="4dp"
+                android:text="Введите ваш вес"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/weight_type"
-                android:layout_marginLeft="10dp"
-                android:paddingBottom="10dp"
-                android:maxLength="6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
-                android:layout_toRightOf="@+id/weight"
+                android:paddingTop="4dp"
+                android:paddingLeft="340dp"
+                android:layout_centerVertical="true"
                 android:background="@android:color/transparent"
                 android:hint="кг"
-                android:layout_centerVertical="true"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:paddingBottom="10dp"
                 android:textAlignment="textStart"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </RelativeLayout>
-
     </LinearLayout>
-
-
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView3"-->
-        <!--android:layout_width="350dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_marginStart="10dp"-->
-        <!--android:layout_marginTop="92dp"-->
-        <!--android:layout_marginEnd="10dp"-->
-        <!--android:src="@mipmap/rectangle"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/weight"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginStart="50dp"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:text="Введите ваш вес:"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toStartOf="@+id/weight_type"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/growth"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
-    <!--<EditText-->
-        <!--android:id="@+id/weight_type"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:layout_marginEnd="4dp"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:gravity="left"-->
-        <!--android:hint="кг"-->
-        <!--android:inputType="number"-->
-        <!--android:maxLength="3"-->
-        <!--android:textColorHint="@color/hintColor"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="1.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/growth_type"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
 
     <LinearLayout
         android:id="@+id/tab3"
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="172dp"
-        android:layout_marginEnd="10dp"
-        android:background="@mipmap/rectangle"
+        android:background="@mipmap/item_tab"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab2"
         app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/age"
@@ -233,84 +124,36 @@
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                android:textSize="20sp"
-                android:text="Введите ваш возраст"/>
+                android:paddingLeft="16dp"
+                android:paddingTop="4dp"
+                android:text="Введите ваш возраст"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/age_type"
-                android:layout_marginLeft="10dp"
-                android:paddingBottom="10dp"
-                android:maxLength="3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
-                android:layout_toRightOf="@+id/age"
+                android:layout_centerVertical="true"
+                android:paddingTop="4dp"
+                android:paddingLeft="340dp"
                 android:background="@android:color/transparent"
                 android:hint="годы"
-                android:layout_centerVertical="true"
+                android:inputType="numberDecimal"
+                android:maxLength="3"
+                android:paddingBottom="10dp"
                 android:textAlignment="textStart"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </RelativeLayout>
-
-
     </LinearLayout>
 
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView4"-->
-        <!--android:layout_width="350dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_marginStart="10dp"-->
-        <!--android:layout_marginTop="172dp"-->
-        <!--android:layout_marginEnd="10dp"-->
-        <!--android:src="@mipmap/rectangle"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/age"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginStart="50dp"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:text="Введите ваш возраст:"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toStartOf="@+id/age_type"-->
-        <!--app:layout_constraintHorizontal_bias="0.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/weight"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
-
-    <!--<EditText-->
-        <!--android:id="@+id/age_type"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:layout_marginEnd="4dp"-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:gravity="left"-->
-        <!--android:hint="года"-->
-        <!--android:inputType="number"-->
-        <!--android:maxLength="3"-->
-        <!--android:textColorHint="@color/hintColor"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="1.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/weight_type"-->
-        <!--app:layout_constraintVertical_bias="0.0" />-->
 
     <LinearLayout
         android:id="@+id/get_result_button"
-        android:layout_width="350dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="252dp"
-        android:background="@mipmap/rectangle"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="550dp"
+        android:background="@mipmap/get_result_button"
         style="?android:attr/borderlessButtonStyle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -321,70 +164,61 @@
         <RelativeLayout
             android:id="@+id/rl_result"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/result_button_textView"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:text="Получить результат"
-                android:textSize="20sp"/>
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="4dp"
+                android:text="ПОЛУЧИТЬ РЕЗУЛЬТАТ"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@mipmap/get_result_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/result_view"
-                android:layout_marginLeft="10dp"
-                android:paddingBottom="10dp"
-                android:textColor="@color/colorPrimary"
-                android:maxLength="6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="numberDecimal"
-                android:layout_toRightOf="@+id/result_button_textView"
                 android:layout_centerVertical="true"
-                android:textAlignment="textStart"
-                android:textSize="20sp" />
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:maxLength="6"
+                android:paddingTop="4dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorLink="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
 
     </LinearLayout>
-
-    <!--<Button-->
-        <!--android:id="@+id/get_result_button"-->
-        <!--android:layout_width="350dp"-->
-        <!--android:layout_height="70dp"-->
-        <!--android:layout_marginTop="252dp"-->
-        <!--android:background="@mipmap/rectangle"-->
-        <!--android:fontFamily="sans-serif"-->
-        <!--android:text="    Получить результат:"-->
-        <!--android:textAlignment="viewStart"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textColor="@color/colorPrimaryDark"-->
-        <!--android:textSize="22dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:layout_constraintVertical_bias="0.0"-->
-        <!--android:visibility="gone"-->
-        <!--/>-->
-
-
-    <!--<TextView-->
-        <!--android:id="@+id/result_view"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginTop="40dp"-->
-        <!--android:layout_marginEnd="4dp"-->
-        <!--android:textSize="22sp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="1.0"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/age_type"-->
-        <!--app:layout_constraintVertical_bias="0.0"-->
-        <!--android:translationZ="50dp"/>-->
 
 </android.support.constraint.ConstraintLayout>
