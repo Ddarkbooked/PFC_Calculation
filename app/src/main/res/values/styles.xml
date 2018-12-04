@@ -8,11 +8,15 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:textColorSecondary">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/darkGrey</item>
+        <item name="android:navigationBarColor">@color/darkGrey</item>
+        <item name="android:textColorPrimary">@color/darkGrey</item>
+
     </style>
 
+
     <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
-        <item name="color">@color/title_color</item>
+        <item name="color">@color/darkGrey</item>
     </style>
 
     <style name="AppTheme.NoActionBar">

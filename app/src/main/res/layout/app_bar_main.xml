@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
-            app:titleTextColor="@color/title_color"
+            app:titleTextColor="@color/darkerGrey"
             android:id="@+id/toolbar"
             android:backgroundTint="@color/topBar"
             android:layout_width="match_parent"
