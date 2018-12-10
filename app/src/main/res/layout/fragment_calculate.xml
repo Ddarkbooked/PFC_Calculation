@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraint_layout"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalculateFragment">
@@ -42,17 +41,27 @@
             <TextView
                 android:id="@+id/growth"
                 android:layout_width="wrap_content"
-                android:textColor="@color/myMainTextColor"
+                android:textColor="@color/darkerGrey"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="52dp"
                 android:layout_toEndOf="@+id/growth_icon_view"
                 android:inputType="none"
                 android:paddingLeft="16dp"
-                android:paddingTop="4dp"
+                android:paddingTop="6dp"
+                android:layout_marginTop="4dp"
                 android:text="Введите ваш рост"
                 android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="34dp"
+                android:textSize="18sp"
+                android:text="Сантиметры"/>
 
             <EditText
                 android:id="@+id/growth_type"
@@ -100,15 +109,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:textColor="@color/myMainTextColor"
+                android:textColor="@color/darkerGrey"
                 android:layout_marginStart="52dp"
                 android:layout_toEndOf="@+id/weight_icon_view"
+                android:layout_marginTop="4dp"
                 android:inputType="none"
                 android:paddingLeft="16dp"
-                android:paddingTop="4dp"
+                android:paddingTop="6dp"
                 android:text="Введите ваш вес"
                 android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="34dp"
+                android:textSize="18sp"
+                android:text="Килограммы"/>
 
             <EditText
                 android:id="@+id/weight_type"
@@ -148,7 +167,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="17dp"
+                android:layout_marginLeft="18dp"
                 android:background="@mipmap/age_icon" />
 
             <TextView
@@ -156,15 +175,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="52dp"
+                android:layout_marginTop="4dp"
+
                 android:layout_toEndOf="@+id/age_icon_view"
-                android:textColor="@color/myMainTextColor"
+                android:textColor="@color/darkerGrey"
                 android:inputType="none"
                 android:paddingLeft="16dp"
-                android:paddingTop="4dp"
+                android:paddingTop="6dp"
                 android:text="Введите ваш возраст"
                 android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="34dp"
+                android:textSize="18sp"
+                android:text="Колличество лет"/>
 
             <EditText
                 android:id="@+id/age_type"
@@ -204,18 +234,18 @@
 
             <TextView
                 android:id="@+id/result_button_textView"
-                android:inputType="none"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:inputType="none"
                 android:paddingTop="4dp"
                 android:text="ПОЛУЧИТЬ РЕЗУЛЬТАТ"
                 android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -249,10 +279,9 @@
                 android:paddingTop="4dp"
                 android:paddingBottom="6dp"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/colorAccent"
                 android:textColorLink="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="20sp" />
 
         </RelativeLayout>
 

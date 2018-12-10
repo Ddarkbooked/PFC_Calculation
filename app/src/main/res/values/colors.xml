@@ -17,6 +17,7 @@
     <color name="drawerTextColor">#626262</color>
 
     <color name="myMainTextColor">#666666</color>
+    <color name="bottomBar">#323232</color>
 
     <color name="background">#ff82B548</color>
     <color name="foreground">@android:color/white</color>
