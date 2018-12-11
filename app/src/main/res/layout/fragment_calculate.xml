@@ -1,14 +1,290 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CalculateFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="CALCULATE FRAGMENT" />
+        android:layout_height="match_parent"/>
 
-</FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_1"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@mipmap/item_tab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/growth_icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/growth_icon" />
+
+
+            <TextView
+                android:id="@+id/growth"
+                android:layout_width="wrap_content"
+                android:textColor="@color/darkerGrey"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="52dp"
+                android:layout_toEndOf="@+id/growth_icon_view"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:paddingTop="6dp"
+                android:layout_marginTop="4dp"
+                android:text="Введите ваш рост"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="34dp"
+                android:textSize="18sp"
+                android:text="Сантиметры"/>
+
+            <EditText
+                android:id="@+id/growth_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:inputType="numberDecimal"
+                android:maxLength="5"
+                android:paddingTop="4dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="viewEnd"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_2"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@mipmap/item_tab"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="68dp"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/weight_icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="16dp"
+                android:background="@mipmap/weight_icon" />
+
+            <TextView
+                android:id="@+id/weight"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/darkerGrey"
+                android:layout_marginStart="52dp"
+                android:layout_toEndOf="@+id/weight_icon_view"
+                android:layout_marginTop="4dp"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:paddingTop="6dp"
+                android:text="Введите ваш вес"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="34dp"
+                android:textSize="18sp"
+                android:text="Килограммы"/>
+
+            <EditText
+                android:id="@+id/weight_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:inputType="numberDecimal"
+                android:maxLength="6"
+                android:paddingTop="4dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="viewEnd"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/tab_3"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="136dp"
+        android:background="@mipmap/item_tab"
+        app:layout_constraintBottom_toTopOf="@+id/coordinator_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/age_icon_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="18dp"
+                android:background="@mipmap/age_icon" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="4dp"
+
+                android:layout_toEndOf="@+id/age_icon_view"
+                android:textColor="@color/darkerGrey"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:paddingTop="6dp"
+                android:text="Введите ваш возраст"
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:paddingLeft="16dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="34dp"
+                android:textSize="18sp"
+                android:text="Колличество лет"/>
+
+            <EditText
+                android:id="@+id/age_type"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:inputType="numberDecimal"
+                android:maxLength="3"
+                android:paddingTop="4dp"
+                android:paddingRight="16dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="viewEnd"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/get_result_button"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="510dp"
+        android:background="@mipmap/get_result_button"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:id="@+id/rl_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/result_button_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:inputType="none"
+                android:paddingTop="4dp"
+                android:text="ПОЛУЧИТЬ РЕЗУЛЬТАТ"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/result_view_button"
+        android:layout_width="320dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@mipmap/get_result_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_3"
+        app:layout_constraintVertical_bias="0.0">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/result_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="6dp"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccent"
+                android:textColorLink="@color/white"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

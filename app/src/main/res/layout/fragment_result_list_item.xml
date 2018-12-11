@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/result_tab"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@mipmap/item_tab">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        tools:text="Пример текста"
+        android:id="@+id/growth_text_main"
+        android:layout_width="400dp"
+        android:textColor="@color/darkerGrey"
+        android:layout_height="40dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="6dp"
+        android:layout_marginTop="4dp"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/growth_text_under"
+        tools:text="Пример подтекста"
+        android:layout_width="400dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_marginTop="34dp"
+        android:textSize="18sp"/>
+
+    </RelativeLayout>
+</LinearLayout>

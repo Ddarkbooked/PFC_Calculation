@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "352970531371",
+    "firebase_url": "https://pfc-calculator.firebaseio.com",
+    "project_id": "pfc-calculator",
+    "storage_bucket": "pfc-calculator.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352970531371:android:53a7a281acb16f2d",
+        "android_client_info": {
+          "package_name": "com.donaldark.pfccalculation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352970531371-2lbv6kv5pjpt6671h4j0dpgeiqir1qiq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.donaldark.pfccalculation",
+            "certificate_hash": "7895ea9ec5ed69d8539f6843874f016d0bb471f6"
+          }
+        },
+        {
+          "client_id": "352970531371-i2tru4l45orrl1pp0m4jtqrnvcbsi0ua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0nGJzLQG50vKYo-BjEsvgMDIe--Y_7eg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352970531371-i2tru4l45orrl1pp0m4jtqrnvcbsi0ua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
