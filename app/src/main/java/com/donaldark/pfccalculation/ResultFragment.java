@@ -11,25 +11,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.annotation.Nullable;
 
 
 public class ResultFragment extends Fragment {
@@ -82,20 +75,18 @@ public class ResultFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        firstLine = new ArrayList<>();
+        firstLine = new ArrayList<ResultData>();
 
 
         Log.d(TAG, "onCreate: "+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        db.collection("Results").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
+        db.collection("Results").whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        ResultData resultData = new ResultData(documentSnapshot.getString("firstLine"));
-                        //firstLine.add(resultData);
-                        Log.d(TAG, "onComplete: "+documentSnapshot.getString("firstLine") + " " + firstLine.toString());
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -104,6 +95,8 @@ public class ResultFragment extends Fragment {
                         Log.d(TAG, "onFailure: "+e.toString());
                     }
                 });
+
+
 //                .get()
 //                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 //                    @Override
@@ -147,30 +140,29 @@ public class ResultFragment extends Fragment {
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         myRecyclerView.setAdapter(recyclerViewAdapter);
 
-        firstLine = new ArrayList<>();
+        firstLine = new ArrayList<ResultData>();
 
 
         Log.d(TAG, "onCreate: "+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        db.collection("Results").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
+        db.collection("Results").whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        ResultData resultData = new ResultData(documentSnapshot.getString("firstLine"));
-                        firstLine.add(resultData);
-                        Log.d(TAG, "onComplete: "+documentSnapshot.getString("firstLine") + " " + firstLine.toString());
-                        notifyRecyclerView(firstLine);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onFailure: "+e.toString());
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                        QuerySnapshot querySnapshot = task.getResult();
+                        for(DocumentSnapshot documentSnapshot:querySnapshot.getDocuments()){
+                            Log.d(TAG, "item: "+documentSnapshot.getId());
+
+                            firstLine.add(new ResultData(documentSnapshot.get("firstLine").toString()));
+                            recyclerViewAdapter.setData(firstLine);
+                            recyclerViewAdapter.notifyDataSetChanged();
+                        }
+
                     }
                 });
-
 
 
 //        db.collection("Results").addSnapshotListener(new EventListener<QuerySnapshot>() {

@@ -3,6 +3,7 @@ package com.donaldark.pfccalculation;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.nsd.NsdManager;
@@ -20,9 +21,12 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
@@ -56,6 +60,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button SignInButton;
     private Button RegistrationButton;
 
+    MainActivity mainActivity = new MainActivity();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +75,57 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SignInButton = (Button) findViewById(R.id.sign_in_button);
         RegistrationButton = (Button) findViewById(R.id.registration_button);
 
+        final String checkEmail = Email.getText().toString();
+        final String checkPassword = Password.getText().toString();
+
+        SignInButton.setEnabled(false);
+        RegistrationButton.setEnabled(false);
+
+            TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String usernameInput = Email.getText().toString().trim();
+                String passwordInput = Password.getText().toString().trim();
+
+                SignInButton.setEnabled(!usernameInput.isEmpty() && !passwordInput.isEmpty());
+                RegistrationButton.setEnabled(!usernameInput.isEmpty() && !passwordInput.isEmpty());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        Email.addTextChangedListener(textWatcher);
+        Password.addTextChangedListener(textWatcher);
+
         SignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                signing(Email.getText().toString(), Password.getText().toString());
+                    signing(Email.getText().toString(), Password.getText().toString());
+                    mainActivity.closeKeyboard();
             }
         });
         RegistrationButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                registration(Email.getText().toString(), Password.getText().toString());
+                    registration(Email.getText().toString(), Password.getText().toString());
+                    mainActivity.closeKeyboard();
             }
         });
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
+            mAuth.getCurrentUser();
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(LoginActivity.this, "Введите ваши данные", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -99,6 +137,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 //        }
 
     }
+
+//    @Override
+//    protected void onResume() {
+//
+//        Email = (EditText) findViewById(R.id.email);
+//        Password = (EditText) findViewById(R.id.password);
+//
+//        final String checkEmail = Email.getText().toString();
+//        final String checkPassword = Password.getText().toString();
+//
+//
+//        }
+//        super.onResume();
+//    }
 
     @Override
     public void onStart() {
@@ -132,17 +184,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
-            Toast.makeText(LoginActivity.this, "Введите ваши данные", Toast.LENGTH_SHORT).show();
+            Snackbar.make(Email, "Неправильный пароль или почта", Snackbar.LENGTH_LONG).show();
                 return;
         }
+
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Вы авторизировались", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = mAuth.getCurrentUser();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Вы не авторизировались", Toast.LENGTH_SHORT).show();
-
+                    Snackbar.make(Email, "Вы не авторизировались", Snackbar.LENGTH_LONG).show();
                 }
 
             }
@@ -152,18 +204,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void registration(String email, String password) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(LoginActivity.this, "Введите ваши данные", Toast.LENGTH_SHORT).show();
+            Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
             return;
         }
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(LoginActivity.this, "Вы зарегистрировались", Toast.LENGTH_SHORT).show();
-
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    Snackbar.make(Email, "Вы зарегистрировались, можете входить", Snackbar.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(LoginActivity.this, "Вы не зарегистрировались", Toast.LENGTH_SHORT).show();
-
+                    Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
                 }
             }
         });

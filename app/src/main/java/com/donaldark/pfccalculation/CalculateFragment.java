@@ -62,6 +62,7 @@ public class CalculateFragment extends Fragment {
 
 
     private OnFragmentInteractionListener mListener;
+    Context context;
 
 
 
@@ -95,7 +96,7 @@ public class CalculateFragment extends Fragment {
                              Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.fragment_calculate, container, false);
+        final View view = inflater.inflate(R.layout.fragment_calculate, container, false);
 
         growthType = (EditText) view.findViewById(R.id.growth_type);
         weightType = (EditText) view.findViewById(R.id.weight_type);
@@ -133,11 +134,9 @@ public class CalculateFragment extends Fragment {
                     return;
                 }
                 calculatePFC();
-
-
-
-
                 resultViewButton.setVisibility(View.VISIBLE);
+                Snackbar.make(growthType, "Ваш данные были сохранены во вкладку Результаты", Snackbar.LENGTH_LONG).show();
+                return;
             }
 
 
@@ -231,19 +230,19 @@ public class CalculateFragment extends Fragment {
         data.put("firstLine", String.valueOf(finalResult));
         data.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-        db.collection("Results").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(data)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Log.d(TAG, "onComplete: "+task.isSuccessful());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onFailure: "+e.fillInStackTrace().toString());
-                    }
-                });
+        db.collection("Results").add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                Log.d(TAG, "onComplete: "+task.isSuccessful());
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d(TAG, "onFailure: "+e.fillInStackTrace().toString());
+            }
+        });
+
+
 //                .add(data)
 //                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
 //                    @Override
