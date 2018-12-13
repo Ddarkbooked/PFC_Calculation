@@ -3,11 +3,9 @@ package com.donaldark.pfccalculation;
 public class ResultData {
 
     private String firstLine;
-//    private String secondLine;
 
-    public ResultData(String firstLine /*, String secondLine */) {
+    public ResultData(String firstLine) {
         this.firstLine = firstLine;
-//        this.secondLine = secondLine;
     }
 
     public String getFirstLine() {
@@ -24,12 +22,4 @@ public class ResultData {
                 "firstLine='" + firstLine + '\'' +
                 '}';
     }
-
-    //    public String getSecondLine() {
-//        return secondLine;
-//    }
-//
-//    public void setSecondLine(String secondLine) {
-//        this.secondLine = secondLine;
-//    }
 }

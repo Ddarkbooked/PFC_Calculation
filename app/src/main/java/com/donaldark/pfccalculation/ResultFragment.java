@@ -27,33 +27,22 @@ import java.util.List;
 
 public class ResultFragment extends Fragment {
 
-    private static final String TAG = "ResultFragment";
-
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    View v;
     private RecyclerView myRecyclerView;
     private List<ResultData> firstLine;
     private MyRecyclerViewAdapter recyclerViewAdapter;
 
-
-
+    View v;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     MyRecyclerViewAdapter adapter;
-
-
-
 
     String firstText;
     private TextView tv_FirstText;
-
 
     public ResultFragment() {
     }
@@ -77,54 +66,23 @@ public class ResultFragment extends Fragment {
 
         firstLine = new ArrayList<ResultData>();
 
-
-        Log.d(TAG, "onCreate: "+FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-
         db.collection("Results").whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "onFailure: "+e.toString());
                     }
                 });
-
-
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        for (QueryDocumentSnapshot querySnapshot: task.getResult()) {
-//                            ResultData resultData = new ResultData(querySnapshot.getString("firstLine"));
-//                            firstLine.add(resultData);
-//                        }
-//                        adapter = new MyRecyclerViewAdapter(getContext(), firstLine);
-//                        myRecyclerView.setAdapter(adapter);
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error getting document", e);
-//                    }
-//                });
-
-//        firstLine.add(new ResultData("1465", "Ваши данные: 167 см, 56 кг, 22"));
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @android.support.annotation.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
     }
 
     public void notifyRecyclerView(List<ResultData> resultDataList) {
@@ -142,68 +100,19 @@ public class ResultFragment extends Fragment {
 
         firstLine = new ArrayList<ResultData>();
 
-
-        Log.d(TAG, "onCreate: "+FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-
         db.collection("Results").whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
                         QuerySnapshot querySnapshot = task.getResult();
                         for(DocumentSnapshot documentSnapshot:querySnapshot.getDocuments()){
-                            Log.d(TAG, "item: "+documentSnapshot.getId());
-
                             firstLine.add(new ResultData(documentSnapshot.get("firstLine").toString()));
                             recyclerViewAdapter.setData(firstLine);
                             recyclerViewAdapter.notifyDataSetChanged();
                         }
-
                     }
                 });
-
-
-//        db.collection("Results").addSnapshotListener(new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-//                for (DocumentChange dc:queryDocumentSnapshots.getDocumentChanges()) {
-//                    if (dc.getType() == DocumentChange.Type.ADDED) {
-//                        String first;
-//                        first = dc.getDocument().getString("firstLine");
-//                        Log.d(TAG, "onEvent1: " + first);
-//                    }
-//                }
-//            }
-//        });
-
-
-
-
-
-
-
-
-//        DocumentReference docRef = db.collection("Results").document("tJWpAHlF4pWrTr7hxUSu");
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document.exists()) {
-//                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-//                    } else {
-//                        Log.d(TAG, "No such document");
-//                    }
-//                    } else {
-//                    Log.d(TAG, "get failed with ", task.getException());
-//
-//                }
-//            }
-//        });
-
-
         return v;
     }
 
@@ -229,6 +138,4 @@ public class ResultFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-
 }

@@ -52,16 +52,13 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     private FirebaseAuth mAuth;
-
     private EditText Email;
     private EditText Password;
     private Button SignInButton;
     private Button RegistrationButton;
 
     MainActivity mainActivity = new MainActivity();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +81,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -128,29 +124,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             return;
         }
-
-
-//        FirebaseUser user = mAuth.getInstance.getCurrentUser();
-//        if (user !=null) {
-//            Intent intent = new Intent(LoginActivity.this, CalculateFragment.class);
-//            startActivity(intent);
-//        }
-
     }
-
-//    @Override
-//    protected void onResume() {
-//
-//        Email = (EditText) findViewById(R.id.email);
-//        Password = (EditText) findViewById(R.id.password);
-//
-//        final String checkEmail = Email.getText().toString();
-//        final String checkPassword = Password.getText().toString();
-//
-//
-//        }
-//        super.onResume();
-//    }
 
     @Override
     public void onStart() {
@@ -160,22 +134,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         updateUI(currentUser);
     }
 
-
-
     private void updateUI(FirebaseUser currentUser) {
-
     }
-
-
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 
     public void signing(String email, String password) {
@@ -184,7 +151,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
         } else {
-            Snackbar.make(Email, "Неправильный пароль или почта", Snackbar.LENGTH_LONG).show();
+            Snackbar.make(Email, "Неправильные почта/пароль", Snackbar.LENGTH_LONG).show();
                 return;
         }
 
@@ -212,12 +179,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
-                    Snackbar.make(Email, "Вы зарегистрировались, можете входить", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(Email, "Вы зарегистрировались", Snackbar.LENGTH_LONG).show();
                 } else {
                     Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
                 }
             }
         });
     }
-
 }

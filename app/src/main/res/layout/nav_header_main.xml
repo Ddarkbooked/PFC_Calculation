@@ -33,7 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:textColor="@color/darkerGrey"
-        android:text="Ваш помощник при расчете калорий"
+        android:text="@string/header_under_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp" />
 
