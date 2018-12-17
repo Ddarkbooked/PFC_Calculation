@@ -60,8 +60,8 @@
                 android:inputType="none"
                 android:paddingLeft="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="34dp"
-                android:textSize="18sp"
+                android:layout_marginTop="36dp"
+                android:textSize="16sp"
                 android:text="Сантиметры"/>
 
             <EditText
@@ -126,8 +126,8 @@
                 android:inputType="none"
                 android:paddingLeft="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="34dp"
-                android:textSize="18sp"
+                android:layout_marginTop="36dp"
+                android:textSize="16sp"
                 android:text="Килограммы"/>
 
             <EditText
@@ -193,8 +193,8 @@
                 android:inputType="none"
                 android:paddingLeft="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="34dp"
-                android:textSize="18sp"
+                android:layout_marginTop="36dp"
+                android:textSize="16sp"
                 android:text="Колличество лет"/>
 
             <EditText

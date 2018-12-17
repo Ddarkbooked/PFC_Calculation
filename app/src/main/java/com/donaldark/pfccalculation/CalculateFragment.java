@@ -33,7 +33,14 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -180,6 +187,11 @@ public class CalculateFragment extends Fragment {
 
         Map<String, Object> data = new HashMap<>();
         data.put("firstLine", String.valueOf(finalResult));
+
+        DateTime dt=new DateTime();
+        Log.d("date_text", "calculatePFC: "+dt.monthOfYear().getAsText());
+
+        data.put("date", String.valueOf(dt.getDayOfMonth())+"."+String.valueOf(dt.getMonthOfYear())+"."+String.valueOf(dt.getYear()));
         data.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         db.collection("Results").add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {

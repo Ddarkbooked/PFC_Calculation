@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,7 +43,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull MyRecyclerViewHolder myRecyclerViewHolder, int position) {
-        myRecyclerViewHolder.tv_firstLine.setText(data.get(position).getFirstLine());
+        myRecyclerViewHolder.tv_firstLine.setText(data.get(position).getFirstLine() + " калорий");
+
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("dd.MM.yyyy");
+
+        DateTime dt =fmt.parseDateTime(data.get(position).getDate());
+
+
+                myRecyclerViewHolder.tv_date.setText(dt.getDayOfMonth() + " " + dt.monthOfYear().getAsText() + " " + dt.getYear() + " года");
     }
 
     @Override
@@ -49,11 +61,13 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_firstLine;
+        public TextView tv_date;
 
         public MyRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_firstLine = (TextView) itemView.findViewById(R.id.growth_text_main);
+            tv_date = (TextView) itemView.findViewById(R.id.growth_date);
         }
     }
 }

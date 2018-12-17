@@ -25,6 +25,7 @@ import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -76,7 +78,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String checkPassword = Password.getText().toString();
 
         SignInButton.setEnabled(false);
-        RegistrationButton.setEnabled(false);
 
             TextWatcher textWatcher = new TextWatcher() {
             @Override
@@ -89,7 +90,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String passwordInput = Password.getText().toString().trim();
 
                 SignInButton.setEnabled(!usernameInput.isEmpty() && !passwordInput.isEmpty());
-                RegistrationButton.setEnabled(!usernameInput.isEmpty() && !passwordInput.isEmpty());
             }
 
             @Override
@@ -104,15 +104,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                    signing(Email.getText().toString(), Password.getText().toString());
                     mainActivity.closeKeyboard();
+                    signing(Email.getText().toString(), Password.getText().toString());
             }
         });
         RegistrationButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                    registration(Email.getText().toString(), Password.getText().toString());
+                    // registration(Email.getText().toString(), Password.getText().toString());
                     mainActivity.closeKeyboard();
+                    Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                    startActivity(intent);
+
             }
         });
 
@@ -147,43 +150,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void signing(String email, String password) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            Snackbar.make(Email, "Неправильные почта/пароль", Snackbar.LENGTH_LONG).show();
-                return;
-        }
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                } else {
+        if (user == null) {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
                     Snackbar.make(Email, "Вы не авторизировались", Snackbar.LENGTH_LONG).show();
                 }
-
-            }
-        });
-    }
-
-    public void registration(String email, String password) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (email.isEmpty() || password.isEmpty()) {
-            Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
-            return;
+            });
         }
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Snackbar.make(Email, "Вы зарегистрировались", Snackbar.LENGTH_LONG).show();
-                } else {
-                    Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
-                }
-            }
-        });
     }
+
 }

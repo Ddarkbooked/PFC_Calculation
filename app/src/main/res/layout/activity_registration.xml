@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/registration_linearLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegistrationActivity">
+
+
+    <TextView
+        android:id="@+id/registration_top_text"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginTop="6dp"
+        android:textColor="@color/bottomBar"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Введите ваши данные" />
+
+    <EditText
+        android:id="@+id/registration_email"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:background="@mipmap/login_textview"
+        android:hint="Почта"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/registration_password"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:background="@mipmap/login_textview"
+        android:hint="Новый пароль"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/registration_password_again"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:paddingLeft="16dp"
+        android:textSize="14sp"
+        android:background="@mipmap/login_textview"
+        android:hint="Пароль еще раз"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/registration_registration_button"
+        android:background="@mipmap/get_result_button"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"
+        android:textSize="14sp"
+        android:textColor="@color/colorAccent"
+        android:textAllCaps="false"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:text="Зарегистрироваться и Войти" />
+
+</LinearLayout>

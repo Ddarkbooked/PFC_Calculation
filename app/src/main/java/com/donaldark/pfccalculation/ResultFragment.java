@@ -34,7 +34,7 @@ public class ResultFragment extends Fragment {
     private String mParam2;
     private OnFragmentInteractionListener mListener;
     private RecyclerView myRecyclerView;
-    private List<ResultData> firstLine;
+    private List<ResultData> firstLine= new ArrayList<ResultData>();
     private MyRecyclerViewAdapter recyclerViewAdapter;
 
     View v;
@@ -64,20 +64,6 @@ public class ResultFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        firstLine = new ArrayList<ResultData>();
-
-        db.collection("Results").whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                    }
-                });
     }
 
     @Override
@@ -85,9 +71,9 @@ public class ResultFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public void notifyRecyclerView(List<ResultData> resultDataList) {
-        recyclerViewAdapter.setData(resultDataList);
-    }
+//    public void notifyRecyclerView(List<ResultData> resultDataList) {
+//        recyclerViewAdapter.setData(resultDataList);
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,7 +84,6 @@ public class ResultFragment extends Fragment {
         myRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         myRecyclerView.setAdapter(recyclerViewAdapter);
 
-        firstLine = new ArrayList<ResultData>();
 
         db.collection("Results").whereEqualTo("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .get()
@@ -107,10 +92,10 @@ public class ResultFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         QuerySnapshot querySnapshot = task.getResult();
                         for(DocumentSnapshot documentSnapshot:querySnapshot.getDocuments()){
-                            firstLine.add(new ResultData(documentSnapshot.get("firstLine").toString()));
-                            recyclerViewAdapter.setData(firstLine);
-                            recyclerViewAdapter.notifyDataSetChanged();
+                            firstLine.add(new ResultData(documentSnapshot.get("firstLine").toString(),documentSnapshot.get("date").toString()));
                         }
+                        recyclerViewAdapter.setData(firstLine);
+                        recyclerViewAdapter.notifyDataSetChanged();
                     }
                 });
         return v;
