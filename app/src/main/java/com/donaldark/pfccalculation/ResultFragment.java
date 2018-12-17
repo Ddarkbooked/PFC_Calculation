@@ -71,10 +71,6 @@ public class ResultFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-//    public void notifyRecyclerView(List<ResultData> resultDataList) {
-//        recyclerViewAdapter.setData(resultDataList);
-//    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

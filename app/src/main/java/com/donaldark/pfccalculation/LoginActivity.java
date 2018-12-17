@@ -163,7 +163,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Snackbar.make(Email, "Вы не авторизировались", Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Вы не авторизировались", Toast.LENGTH_LONG).show();
                 }
             });
         }
