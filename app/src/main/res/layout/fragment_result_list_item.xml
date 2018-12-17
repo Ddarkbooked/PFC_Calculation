@@ -23,15 +23,18 @@
         android:layout_marginTop="4dp"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/growth_text_under"
-        tools:text="Пример подтекста"
-        android:layout_width="400dp"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:layout_marginTop="34dp"
-        android:textSize="18sp"/>
+
+
+        <TextView
+            android:id="@+id/growth_date"
+            tools:text="Дата"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="18dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="36dp"
+            android:textSize="16sp"/>
+
 
     </RelativeLayout>
 </LinearLayout>

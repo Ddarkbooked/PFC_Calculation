@@ -3,11 +3,19 @@ package com.donaldark.pfccalculation;
 public class ResultData {
 
     private String firstLine;
-//    private String secondLine;
+    private String date;
 
-    public ResultData(String firstLine /*, String secondLine */) {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public ResultData(String firstLine,String date) {
         this.firstLine = firstLine;
-//        this.secondLine = secondLine;
+        this.date = date;
     }
 
     public String getFirstLine() {
@@ -22,14 +30,7 @@ public class ResultData {
     public String toString() {
         return "ResultData{" +
                 "firstLine='" + firstLine + '\'' +
+                ", date='" + date + '\'' +
                 '}';
     }
-
-    //    public String getSecondLine() {
-//        return secondLine;
-//    }
-//
-//    public void setSecondLine(String secondLine) {
-//        this.secondLine = secondLine;
-//    }
 }

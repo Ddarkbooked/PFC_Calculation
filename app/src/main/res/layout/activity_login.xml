@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,9 +10,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/white"
     tools:context=".LoginActivity">
 
     <!-- Login progress -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@mipmap/header_logo_hearth" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:textStyle="bold"
+        android:textColor="@color/bottomBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="4dp"
+        android:layout_gravity="center"
+        android:text="Калькулятор БЖУ"
+        android:textSize="28sp" />
+
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/login_progress"
         style="?android:attr/progressBarStyleLarge"
@@ -23,7 +48,8 @@
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="30dp">
 
         <LinearLayout
             android:id="@+id/email_login_form"
@@ -31,12 +57,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <AutoCompleteTextView
+                <EditText
                     android:id="@+id/email"
+                    android:background="@mipmap/login_textview"
+                    android:paddingLeft="16dp"
+                    android:textSize="14sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -44,14 +69,12 @@
                     android:maxLines="1"
                     android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <EditText
                     android:id="@+id/password"
+                    android:background="@mipmap/login_textview"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:paddingLeft="16dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -62,26 +85,48 @@
                     android:maxLines="1"
                     android:singleLine="true" />
 
-            </android.support.design.widget.TextInputLayout>
-
             <Button
                 android:id="@+id/sign_in_button"
                 style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:textSize="14sp"
+                android:layout_width="318dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="60dp"
+                android:textColor="@color/colorAccent"
+                android:background="@mipmap/get_result_button"
+                android:textAllCaps="false"
                 android:text="Войти"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/registration_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Зарегистрироваться"
                 android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:textSize="14sp"
+            android:text="Нет аккаунта?" />
+
+        <Button
+            android:id="@+id/registration_button"
+            style="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center|bottom"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="6dp"
+            android:text="Зарегистрироваться"
+            android:textColor="@color/colorAccent"/>
+    </LinearLayout>
+
 </LinearLayout>

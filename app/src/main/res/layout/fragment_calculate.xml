@@ -6,6 +6,7 @@
     android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".CalculateFragment">
 
     <android.support.design.widget.CoordinatorLayout
@@ -59,8 +60,8 @@
                 android:inputType="none"
                 android:paddingLeft="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="34dp"
-                android:textSize="18sp"
+                android:layout_marginTop="36dp"
+                android:textSize="16sp"
                 android:text="Сантиметры"/>
 
             <EditText
@@ -125,8 +126,8 @@
                 android:inputType="none"
                 android:paddingLeft="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="34dp"
-                android:textSize="18sp"
+                android:layout_marginTop="36dp"
+                android:textSize="16sp"
                 android:text="Килограммы"/>
 
             <EditText
@@ -192,8 +193,8 @@
                 android:inputType="none"
                 android:paddingLeft="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="34dp"
-                android:textSize="18sp"
+                android:layout_marginTop="36dp"
+                android:textSize="16sp"
                 android:text="Колличество лет"/>
 
             <EditText

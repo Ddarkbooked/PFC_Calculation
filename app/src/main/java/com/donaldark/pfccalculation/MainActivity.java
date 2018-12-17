@@ -39,11 +39,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,OnFragmentInteractionListener {
 
-    private static final String TAG = "MainActivity";
-
     private NavigationView navView;
-
-
+    private long backPressedTime;
+    private Toast backToast;
+    int pid = android.os.Process.myPid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,30 +90,27 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fram, fragment, "Расчет БЖУ");  //create first framelayout with id fram in the activity where fragments will be displayed
         fragmentTransaction.commit();
-
-
-
     }
 
-    //    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            super.onBackPressed();
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
+            android.os.Process.killProcess(pid);
+        } else {
+            backToast = Toast.makeText(getBaseContext(), "Нажмите назад еще раз чтобы выйти", Toast.LENGTH_LONG);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.nav_calculate_pfc) {
@@ -125,14 +121,14 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_result_pfc) {
-            setTitle("Результат");
+            setTitle("Результаты");
             ResultFragment fragment = new ResultFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fram, fragment, "ResultFragment");
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_about) {
-            setTitle("О приложении");
+            setTitle("Что такое БЖУ?");
             AboutFragment fragment = new AboutFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fram, fragment, "AboutFragment");
@@ -143,12 +139,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 
     public void closeKeyboard() {
@@ -158,7 +152,4 @@ public class MainActivity extends AppCompatActivity
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
-
-
-
 }

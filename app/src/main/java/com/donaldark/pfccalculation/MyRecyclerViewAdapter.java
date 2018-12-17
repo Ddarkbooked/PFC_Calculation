@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +31,6 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public MyRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-
         v = LayoutInflater.from(context).inflate(R.layout.fragment_result_list_item, parent, false);
         MyRecyclerViewHolder vHolder = new MyRecyclerViewHolder(v);
         return vHolder;
@@ -39,11 +43,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     @Override
     public void onBindViewHolder(@NonNull MyRecyclerViewHolder myRecyclerViewHolder, int position) {
+        myRecyclerViewHolder.tv_firstLine.setText(data.get(position).getFirstLine() + " калорий");
 
-        myRecyclerViewHolder.tv_firstLine.setText(data.get(position).getFirstLine());
-//        myRecyclerViewHolder.tv_secondLine.setText(data.get(position).getSecondLine());
+        DateTimeFormatter fmt = DateTimeFormat.forPattern("dd.MM.yyyy");
+
+        DateTime dt =fmt.parseDateTime(data.get(position).getDate());
 
 
+                myRecyclerViewHolder.tv_date.setText(dt.getDayOfMonth() + " " + dt.monthOfYear().getAsText() + " " + dt.getYear() + " года");
     }
 
     @Override
@@ -53,50 +60,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
 
     public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
-
         public TextView tv_firstLine;
-//        private TextView tv_secondLine;
+        public TextView tv_date;
 
         public MyRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             tv_firstLine = (TextView) itemView.findViewById(R.id.growth_text_main);
-//            tv_secondLine = (TextView) itemView.findViewById(R.id.growth_text_under);
+            tv_date = (TextView) itemView.findViewById(R.id.growth_date);
         }
-
-
     }
-
-
-
-
-
-//
-//    public MyRecyclerViewAdapter(ResultActivity resultActivity, ArrayList<User> userArrayList) {
-//
-//    }
-//
-//    @NonNull
-//    @Override
-//    public MyRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//
-//        LayoutInflater layoutInflater = LayoutInflater.from(resultActivity.getBaseContext());
-//        View view = layoutInflater.inflate(R.layout.fragment_result_list_item, parent, false);
-//
-//        return new MyRecyclerViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull MyRecyclerViewHolder holder, int position) {
-//
-//        holder.userName.setText(userArrayList.get(position).getFirstLine());
-//        holder.userStatus.setText(userArrayList.get(position).getSecondLine());
-//
-//    }
-//
-//
-//    @Override
-//    public int getItemCount() {
-//        return userArrayList.size();
-//    }
 }

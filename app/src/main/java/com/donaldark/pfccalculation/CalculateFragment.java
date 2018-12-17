@@ -33,14 +33,19 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 
 public class CalculateFragment extends Fragment {
 
-    private static final String TAG = "CalculateFragment";
-    
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -57,14 +62,8 @@ public class CalculateFragment extends Fragment {
     private LinearLayout getResultButton;
     private LinearLayout resultViewButton;
     private ConstraintLayout constraintLayout;
-
     private LinearLayout tab1;
-
-
     private OnFragmentInteractionListener mListener;
-    Context context;
-
-
 
 
     public CalculateFragment() {
@@ -87,15 +86,11 @@ public class CalculateFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         final View view = inflater.inflate(R.layout.fragment_calculate, container, false);
 
         growthType = (EditText) view.findViewById(R.id.growth_type);
@@ -106,9 +101,6 @@ public class CalculateFragment extends Fragment {
         getResultButton = (LinearLayout) view.findViewById(R.id.get_result_button);
         constraintLayout = (ConstraintLayout) view.findViewById(R.id.constraint_layout);
         tab1 = (LinearLayout) view.findViewById(R.id.tab_1);
-
-
-
 
         //Вызов метода из MainActivity//
      final MainActivity activity = (MainActivity) getActivity();
@@ -135,13 +127,12 @@ public class CalculateFragment extends Fragment {
                 }
                 calculatePFC();
                 resultViewButton.setVisibility(View.VISIBLE);
-                Snackbar.make(growthType, "Ваш данные были сохранены во вкладку Результаты", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(growthType, "Ваш данные были сохранены во вкладку результаты", Snackbar.LENGTH_LONG).show();
                 return;
             }
 
 
         });
-
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,39 +140,8 @@ public class CalculateFragment extends Fragment {
             }
         });
 
-//        tab1.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                switch (event.getAction()){
-//                    case MotionEvent.ACTION_DOWN:{
-//                        ObjectAnimator colorFade = ObjectAnimator.ofObject(tab1, "backgroundColor" /*view attribute name*/, new ArgbEvaluator(), activity.getApplicationContext().getResources().getColor(R.color.white) /*from color*/, activity.getApplicationContext().getResources().getColor(R.color.blue) /*to color*/);
-//                        colorFade.setDuration(500);
-//                        colorFade.setStartDelay(200);
-//                        colorFade.start();
-//                        break;
-//                    }
-//                    case MotionEvent.ACTION_UP:{
-//                        ObjectAnimator colorFade = ObjectAnimator.ofObject(tab1, "backgroundColor" /*view attribute name*/, new ArgbEvaluator(), activity.getApplicationContext().getResources().getColor(R.color.blue) /*from color*/, activity.getApplicationContext().getResources().getColor(R.color.white) /*to color*/);
-//                        colorFade.setDuration(500);
-//                        colorFade.setStartDelay(200);
-//                        colorFade.start();
-//                        break;
-//                    }
-//                }
-//
-//
-//                return false;
-//            }
-//        });
-
-
-
         return view;
     }
-
-
-
-
 
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -213,7 +173,6 @@ public class CalculateFragment extends Fragment {
         String weightString = weightType.getText().toString();
         String ageString = ageType.getText().toString();
 
-
         // Преобразуем текстовые переменные в числовые значения
         growth = Double.parseDouble(growthString);
         weight = Double.parseDouble(weightString);
@@ -228,35 +187,22 @@ public class CalculateFragment extends Fragment {
 
         Map<String, Object> data = new HashMap<>();
         data.put("firstLine", String.valueOf(finalResult));
+
+        DateTime dt=new DateTime();
+        Log.d("date_text", "calculatePFC: "+dt.monthOfYear().getAsText());
+
+        data.put("date", String.valueOf(dt.getDayOfMonth())+"."+String.valueOf(dt.getMonthOfYear())+"."+String.valueOf(dt.getYear()));
         data.put("user_id", FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         db.collection("Results").add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
-                Log.d(TAG, "onComplete: "+task.isSuccessful());
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d(TAG, "onFailure: "+e.fillInStackTrace().toString());
             }
         });
-
-
-//                .add(data)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Log.w(TAG, "Error adding document", e);
-//                    }
-//                });
-
     }
 
     public void conditionToCalculate(View v) {

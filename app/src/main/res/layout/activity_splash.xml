@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".SplashActivity">
+
+    <ImageView
+        android:id="@+id/splash_logo"
+        android:layout_width="127dp"
+        android:layout_height="123dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="129dp"
+        app:srcCompat="@mipmap/header_logo_hearth" />
+
+    <TextView
+        android:id="@+id/splash_title"
+        android:layout_width="272dp"
+        android:layout_height="47dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="279dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="333dp"
+        android:text="Калькулятор БЖУ"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/splash_under_title"
+        android:layout_width="372dp"
+        android:layout_height="29dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="330dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="300dp"
+        android:text="Ваш помощник при расчете калорий"
+        android:textAlignment="center"
+        android:textSize="20dp" />
+</RelativeLayout>

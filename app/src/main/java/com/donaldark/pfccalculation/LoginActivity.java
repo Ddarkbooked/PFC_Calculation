@@ -25,6 +25,7 @@ import android.text.Editable;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -52,16 +54,13 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     private FirebaseAuth mAuth;
-
     private EditText Email;
     private EditText Password;
     private Button SignInButton;
     private Button RegistrationButton;
 
     MainActivity mainActivity = new MainActivity();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +78,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final String checkPassword = Password.getText().toString();
 
         SignInButton.setEnabled(false);
-        RegistrationButton.setEnabled(false);
 
             TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -93,7 +90,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String passwordInput = Password.getText().toString().trim();
 
                 SignInButton.setEnabled(!usernameInput.isEmpty() && !passwordInput.isEmpty());
-                RegistrationButton.setEnabled(!usernameInput.isEmpty() && !passwordInput.isEmpty());
             }
 
             @Override
@@ -108,15 +104,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         SignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                    signing(Email.getText().toString(), Password.getText().toString());
                     mainActivity.closeKeyboard();
+                    signing(Email.getText().toString(), Password.getText().toString());
             }
         });
         RegistrationButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                    registration(Email.getText().toString(), Password.getText().toString());
+                    // registration(Email.getText().toString(), Password.getText().toString());
                     mainActivity.closeKeyboard();
+                    Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                    startActivity(intent);
+
             }
         });
 
@@ -128,29 +127,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             return;
         }
-
-
-//        FirebaseUser user = mAuth.getInstance.getCurrentUser();
-//        if (user !=null) {
-//            Intent intent = new Intent(LoginActivity.this, CalculateFragment.class);
-//            startActivity(intent);
-//        }
-
     }
-
-//    @Override
-//    protected void onResume() {
-//
-//        Email = (EditText) findViewById(R.id.email);
-//        Password = (EditText) findViewById(R.id.password);
-//
-//        final String checkEmail = Email.getText().toString();
-//        final String checkPassword = Password.getText().toString();
-//
-//
-//        }
-//        super.onResume();
-//    }
 
     @Override
     public void onStart() {
@@ -160,64 +137,36 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         updateUI(currentUser);
     }
 
-
-
     private void updateUI(FirebaseUser currentUser) {
-
     }
-
-
 
     @Override
     public void onClick(View v) {
-
     }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 
     public void signing(String email, String password) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        } else {
-            Snackbar.make(Email, "Неправильный пароль или почта", Snackbar.LENGTH_LONG).show();
-                return;
-        }
-
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                } else {
+        if (user == null) {
+            mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
                     Snackbar.make(Email, "Вы не авторизировались", Snackbar.LENGTH_LONG).show();
                 }
-
-            }
-        });
-    }
-
-    public void registration(String email, String password) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (email.isEmpty() || password.isEmpty()) {
-            Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
-            return;
+            });
         }
-        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Snackbar.make(Email, "Вы зарегистрировались, можете входить", Snackbar.LENGTH_LONG).show();
-                } else {
-                    Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
-                }
-            }
-        });
     }
 
 }

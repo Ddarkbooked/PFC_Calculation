@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="@dimen/nav_header_height"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@mipmap/item_tab"
     android:gravity="bottom"
     android:orientation="vertical"
@@ -33,8 +34,16 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:textColor="@color/darkerGrey"
-        android:text="Ваш помощник при расчете калорий"
+        android:text="@string/header_under_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/header_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginTop="2dp"
+        tools:text="egwwom@gmail.com"/>
 
 </LinearLayout>
