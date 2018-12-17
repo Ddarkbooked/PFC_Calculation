@@ -122,12 +122,12 @@ public class CalculateFragment extends Fragment {
                     resultViewButton.setVisibility(View.GONE);
                     return;
                 } else if(checkGrowth.matches(".") || checkWeight.matches(".") || checkAge.matches(".")) {
-                    Snackbar.make(growthType, "Введите ваши правильные данные", Snackbar.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Введите ваши правильные данные", Toast.LENGTH_LONG).show();
                     return;
                 }
                 calculatePFC();
                 resultViewButton.setVisibility(View.VISIBLE);
-                Snackbar.make(growthType, "Ваш данные были сохранены во вкладку результаты", Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Ваш данные сохранены в результаты", Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -212,37 +212,37 @@ public class CalculateFragment extends Fragment {
         String checkAge = ageType.getText().toString();
 
         if (checkGrowth.isEmpty() && checkWeight.isEmpty() && checkAge.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваши данные", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваши данные", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (checkGrowth.isEmpty() && checkWeight.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваш рост и вес", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваш рост и вес", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (checkAge.isEmpty() && checkWeight.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваш вес и возраст", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваш вес и возраст", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (checkGrowth.isEmpty() && checkAge.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваш рост и возраст", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваш рост и возраст", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (checkGrowth.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваш рост", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваш рост", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (checkWeight.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваш вес", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваш вес", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (checkAge.isEmpty()) {
-            Snackbar.make(growthType, "Введите ваш возраст", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getContext(), "Введите ваш возраст", Toast.LENGTH_LONG).show();
             return;
         }
     }

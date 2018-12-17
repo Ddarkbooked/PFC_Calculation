@@ -69,27 +69,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             registrationPassword.addTextChangedListener(textWatcher);
             registrationPasswordAgain.addTextChangedListener(textWatcher);
 
-//        mAuth.createUserWithEmailAndPassword(email, password)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            Log.d(TAG, "createUserWithEmail:success");
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-//                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-//                                    Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
-//                        }
-//
-//                        // ...
-//                    }
-//                });
-
         registrationRegistrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,9 +83,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        // updateUI(currentUser);
     }
 
     @Override
@@ -125,22 +102,22 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String passwordAgain = registrationPasswordAgain.getText().toString().trim();
 
         if (TextUtils.isEmpty(email)) {
-            Snackbar.make(registrationLinearLayout, "Введите почту", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(RegistrationActivity.this, "Введите почту", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Snackbar.make(registrationLinearLayout, "Введите пароль", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(RegistrationActivity.this, "Введите пароль", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(passwordAgain)) {
-            Snackbar.make(registrationLinearLayout, "Подтвердите пароль", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(RegistrationActivity.this, "Подтвердите пароль", Toast.LENGTH_LONG).show();
             return;
         }
 
         if (!password.equals(passwordAgain)) {
-            Snackbar.make(registrationLinearLayout, "Пароли не совпадают", Snackbar.LENGTH_LONG).show();
+            Toast.makeText(RegistrationActivity.this, "Пароли не совпадают", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -156,35 +133,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                             startActivity(intent);
 
                         } else {
-                            Snackbar.make(registrationLinearLayout, "Вы не зарегистрировались, попробуйте еще раз", Snackbar.LENGTH_LONG).show();
+                            Toast.makeText(RegistrationActivity.this, "Вы не зарегистрировались, попробуйте еще раз", Toast.LENGTH_LONG).show();
 
                         }
                     }
                 });
     }
-
-
 }
-
-
-
-
-//    public void registration(String email, String password, String passwordAgain) {
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        if (email.isEmpty() || password.isEmpty()) {
-//            Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
-//            return;
-//        }
-//
-//        mAuth.createUserWithEmailAndPassword(email, password, passwordAgain).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//            @Override
-//            public void onComplete(@NonNull Task<AuthResult> task) {
-//                if (task.isSuccessful()) {
-//                    FirebaseUser user = mAuth.getCurrentUser();
-//                    Snackbar.make(Email, "Вы зарегистрировались", Snackbar.LENGTH_LONG).show();
-//                } else {
-//                    Snackbar.make(Email, "Введите правильные данные", Snackbar.LENGTH_LONG).show();
-//                }
-//            }
-//        });
-//    }
