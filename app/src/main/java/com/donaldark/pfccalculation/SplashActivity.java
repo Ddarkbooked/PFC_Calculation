@@ -20,6 +20,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+
+
         splashLogo = (ImageView) findViewById(R.id.splash_logo);
         splashTitle = (TextView) findViewById(R.id.splash_title);
         splashUnderTitle = (TextView) findViewById(R.id.splash_under_title);
