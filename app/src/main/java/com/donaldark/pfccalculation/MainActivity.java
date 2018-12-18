@@ -134,7 +134,14 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fram, fragment, "AboutFragment");
             fragmentTransaction.commit();
 
-        }
+        } else if (id == R.id.nav_exit) {
+        setTitle("Выход");
+//        AboutFragment fragment = new AboutFragment();
+//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.fram, fragment, "AboutFragment");
+//        fragmentTransaction.commit();
+
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
