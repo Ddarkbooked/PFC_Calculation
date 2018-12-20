@@ -19,6 +19,7 @@
             android:label="Расчет БЖУ"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:windowSoftInputMode="stateVisible"
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"></activity>
         <activity android:name=".SplashActivity">
