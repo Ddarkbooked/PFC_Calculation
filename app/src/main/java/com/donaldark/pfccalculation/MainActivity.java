@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,OnFragmentInteractionListener {
@@ -135,12 +136,10 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
 
         } else if (id == R.id.nav_exit) {
-        setTitle("Выход");
-//        AboutFragment fragment = new AboutFragment();
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.fram, fragment, "AboutFragment");
-//        fragmentTransaction.commit();
-
+        setTitle("Выйти");
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
     }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
