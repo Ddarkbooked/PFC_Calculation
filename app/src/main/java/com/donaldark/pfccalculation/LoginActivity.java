@@ -59,8 +59,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText Password;
     private Button SignInButton;
     private Button RegistrationButton;
+    private Button LoginButton;
 
     MainActivity mainActivity = new MainActivity();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +129,40 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         } else {
             return;
         }
+
+//        // Initialize Facebook Login button
+//        mCallbackManager = CallbackManager.Factory.create();
+//        LoginButton loginButton = findViewById(R.id.buttonFacebookLogin);
+//        loginButton.setReadPermissions("email", "public_profile");
+//        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Log.d(TAG, "facebook:onCancel");
+//                // ...
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Log.d(TAG, "facebook:onError", error);
+//                // ...
+//            }
+//        });
+//        // ...
+//        @Override
+//        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//            super.onActivityResult(requestCode, resultCode, data);
+//
+//            // Pass the activity result back to the Facebook SDK
+//            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+//        }
+
+
     }
 
     @Override
